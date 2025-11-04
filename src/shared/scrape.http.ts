@@ -388,9 +388,9 @@ export default class ChromiumScrapePostRoute extends BrowserHTTPRoute {
       bestAttemptCatch(bestAttempt),
     );
 
-    page.on('response', response => {
+    page.on('response', (response) => {
       if (response.request().isNavigationRequest()) {
-        console.info('Navigation:', response.status(), response.url());
+        logger.info('Navigation:', response.status(), response.url());
         gotoResponse = response;
       }
     });

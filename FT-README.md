@@ -4,9 +4,10 @@ If you have it, run locally:
 ```shell
 ./sync.sh
 ```
-this will sync files to server and run docker build there.
+this will sync files to server, run docker build and run container — i.e. this is all you need to run.
 
 ## Run
+If you just want to run container manually:
 ```shell
 # login to the server
 ssh root@138.201.85.101
