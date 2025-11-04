@@ -384,9 +384,16 @@ export default class ChromiumScrapePostRoute extends BrowserHTTPRoute {
       });
     }
 
-    const gotoResponse = await gotoCall(content, gotoOptions).catch(
+    var gotoResponse = await gotoCall(content, gotoOptions).catch(
       bestAttemptCatch(bestAttempt),
     );
+
+    page.on('response', response => {
+      if (response.request().isNavigationRequest()) {
+        console.info('Navigation:', response.status(), response.url());
+        gotoResponse = response;
+      }
+    });
 
     if (addStyleTag.length) {
       for (const tag in addStyleTag) {
